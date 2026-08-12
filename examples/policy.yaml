@@ -1,0 +1,31 @@
+catalogs:
+  bachelor_degree:
+    Mechanical Engineering:
+      broad: engineering
+      narrow: engineering
+      detailed: mechanical_engineering
+    Electrical Engineering:
+      broad: engineering
+      narrow: engineering
+      detailed: electrical_engineering
+  undergrad_university:
+    Synthetic University Main Campus:
+      system: synthetic_university
+      campus: main
+    Synthetic University Regional Campus:
+      system: synthetic_university
+      campus: regional
+  home_location:
+    Synthetic City A:
+      country: synthetic_country
+      region: synthetic_region
+      city: synthetic_city_a
+    Synthetic City B:
+      country: synthetic_country
+      region: synthetic_region
+      city: synthetic_city_b
+  purdue_college:
+    Engineering: engineering
+  advisor:
+    Faculty A: faculty_a
+    Faculty B: faculty_b

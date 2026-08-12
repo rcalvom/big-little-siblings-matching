@@ -1,0 +1,51 @@
+schema_version: "2.0"
+policy_version: "csap-v2"
+
+gender:
+  disclosed_values:
+    - cisgender_man
+    - cisgender_woman
+    - nonbinary
+  not_disclosed_values:
+    - prefer_not_to_say
+    - prefer_not_to_answer
+    - prefer_not_to_disclose
+
+weights:
+  priority_alignment: "1"
+  bachelor_degree: "1"
+  undergrad_university: "1"
+  home_location: "1"
+  purdue_college: "1"
+  advisor: "1"
+
+similarity:
+  bachelor_degree:
+    detailed: "1"
+    narrow: "2/3"
+    broad: "1/3"
+  undergrad_university:
+    same_campus: "1"
+    same_system: "1/2"
+  home_location:
+    same_city: "1"
+    same_region: "2/3"
+    same_country: "1/3"
+
+# Cohort-specific aliases and hierarchies belong in a private override file.
+catalogs:
+  bachelor_degree: {}
+  undergrad_university: {}
+  home_location: {}
+  purdue_college: {}
+  advisor: {}
+
+review:
+  sensitivity_enabled: true
+  weight_perturbation: "1/10"
+  risk_weights:
+    low_score: "1"
+    candidate_count: "1"
+    regret: "1"
+    sensitivity: "1"
+    exception: "1"

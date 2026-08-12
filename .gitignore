@@ -1,0 +1,31 @@
+# Local Python environments and test artifacts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+coverage.xml
+.hypothesis/
+*.egg-info/
+build/
+dist/
+
+# Sensitive program data and generated matching reports
+inputs/source/**
+inputs/normalized/**
+inputs/preparation/**
+inputs/canonical/**
+inputs/overrides/**
+outputs/**
+!inputs/README.md
+!outputs/README.md
+
+# Local configuration and operating-system files
+.env
+.private/
+config/*.private.yaml
+**/*.private.yaml
+.DS_Store
+
+# Generated mailings carry participant names and addresses
+mailings/*/rendered/

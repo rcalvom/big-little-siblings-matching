@@ -1,0 +1,92 @@
+# Example cohort policy override.
+#
+# Copy this file to `config/<season>.private.yaml` and replace the catalogs with
+# your own reviewed values. The `.private.yaml` suffix is ignored by Git, which
+# is where the real cohort catalogs belong.
+#
+# Anything omitted here falls back to the structural policy shipped inside the
+# package, so an override only needs to state what it changes. Every value below
+# is invented.
+
+policy_version: "example-cohort"
+
+# Relative importance of each score component. These are normalized by their
+# sum, so what matters is their proportion: with the values below the priority
+# ranking is worth 3/9 of the score and each of the others 1/9 or 2/9.
+# Every weight must be positive; use a small fraction such as "1/20" to make a
+# component nearly irrelevant rather than trying to set it to zero.
+weights:
+  priority_alignment: "3"
+  bachelor_degree: "2"
+  advisor: "2"
+  home_location: "1"
+  undergrad_university: "1"
+  purdue_college: "1"
+
+# Partial credit inside each hierarchy. A pair that shares only the broad field
+# of study earns 1/3 of that component, and so on. Values must decrease as the
+# match gets looser.
+similarity:
+  bachelor_degree:
+    detailed: "1"
+    narrow: "2/3"
+    broad: "1/3"
+  undergrad_university:
+    same_campus: "1"
+    same_system: "1/2"
+  home_location:
+    same_city: "1"
+    same_region: "2/3"
+    same_country: "1/3"
+
+# Free text from the CSV files, resolved into codes the matcher can compare.
+# Spelling, casing, and accent variants are written out one by one: the matcher
+# does no fuzzy matching, so a value missing from here stops the run.
+catalogs:
+
+  bachelor_degree:
+    "Mechanical Engineering":
+      {broad: engineering, narrow: engineering_trades, detailed: mechanical_engineering}
+    "Mechanical engineering":
+      {broad: engineering, narrow: engineering_trades, detailed: mechanical_engineering}
+    "Chemical Engineering":
+      {broad: engineering, narrow: engineering_trades, detailed: chemical_engineering}
+    "Biology":
+      {broad: natural_sciences, narrow: biological_sciences, detailed: biology}
+
+  undergrad_university:
+    "Example University":            {system: example_university, campus: example_main}
+    "Example University - Regional": {system: example_university, campus: example_regional}
+    "Other University":              {system: other_university, campus: other_main}
+
+  home_location:
+    "Example City, Example Country": {country: example_country, region: example_region, city: example_city}
+    "Example City":                  {country: example_country, region: example_region, city: example_city}
+    "Second City, Example Country":  {country: example_country, region: second_region, city: second_city}
+
+  purdue_college:
+    "College of Engineering": engineering
+    "College of Science": science
+
+  # One code per person. Group the ways their name was written; keep genuinely
+  # different people apart, including people who share a first or last name.
+  advisor:
+    "Alex Example": alex_example
+    "Dr. Alex Example": alex_example
+    "Prof. Alex Example": alex_example
+    "Jordan Sample": jordan_sample
+
+# Signals used to rank the review queue. These affect only the order in which
+# assignments are presented for human review, never the matching itself.
+review:
+  # Twelve extra matchings with perturbed weights, used to detect assignments
+  # that are only marginally better than their alternatives. Set to false if
+  # that cost is not acceptable; the manifest records the decision either way.
+  sensitivity_enabled: true
+  weight_perturbation: "1/10"
+  risk_weights:
+    low_score: "1"
+    candidate_count: "1"
+    regret: "1"
+    sensitivity: "1"
+    exception: "1"

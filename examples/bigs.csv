@@ -1,0 +1,3 @@
+big_id,first_name,last_name,email,gender_identity,same_gender_mentorship,bachelor_degree,undergrad_university,home_location,purdue_college,advisor,priority_academic_mentoring_rank,priority_emotional_support_rank,priority_local_integration_rank,priority_graduate_research_rank,priority_social_activities_rank,accepts_non_colombian_little,can_commit_4_6_hours,capacity
+B-1,Synthetic,Big One,big-1@example.test,cisgender_man,no,Mechanical Engineering,Synthetic University Main Campus,Synthetic City A,Engineering,Faculty A,1,2,3,4,5,yes,yes,1
+B-2,Synthetic,Big Two,big-2@example.test,cisgender_woman,no,Electrical Engineering,Synthetic University Regional Campus,Synthetic City B,Engineering,Faculty B,2,1,3,4,5,yes,yes,1
